@@ -18,10 +18,10 @@ public class SafeRunnable {
 
     }
 
-    private static Runnable uncheck(MyRunnable myRunnable) {
+    private static Runnable uncheck(UncheckedRunnable myRunnable) {
         return () -> {
             try {
-                myRunnable.run();
+                myRunnable.runUnchecked();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -31,6 +31,6 @@ public class SafeRunnable {
 }
 
 @FunctionalInterface
-interface MyRunnable {
-    void run() throws Exception;
+interface UncheckedRunnable {
+    void runUnchecked() throws Exception;
 }
